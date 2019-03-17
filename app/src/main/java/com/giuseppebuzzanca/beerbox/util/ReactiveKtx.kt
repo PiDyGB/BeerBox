@@ -1,5 +1,6 @@
 package com.giuseppebuzzanca.beerbox.util
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.GenericLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event.*
@@ -8,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import io.reactivex.disposables.Disposable
 
 fun Disposable.bindToLifecycle(lifecycleOwner: LifecycleOwner): Disposable {
-    val lifecycle = lifecycleOwner.lifecycle
+    val lifecycle = ((lifecycleOwner as? Fragment)?.viewLifecycleOwner ?: lifecycleOwner).lifecycle
     val subscriptionState = lifecycle.currentState
     lifecycle.addObserver(GenericLifecycleObserver { _, e ->
         if (shouldDispose(subscriptionState, e))

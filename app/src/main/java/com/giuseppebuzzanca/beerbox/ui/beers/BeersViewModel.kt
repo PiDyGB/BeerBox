@@ -22,7 +22,7 @@ class BeersViewModel @Inject constructor(private val beersRepository: BeersRepos
         beersSource?.let { beersData ->
             Transformations.map(beersData) { beersList ->
                 beersList.filter { beer ->
-                    val searchQueryFilter = filter.first.length < 3 || beer.name.contains(filter.first, true)
+                    val searchQueryFilter = beer.name.contains(filter.first, true)
                             || beer.tagLine?.contains(filter.first, true) == true
                             || beer.description?.contains(filter.first, true) == true
 
