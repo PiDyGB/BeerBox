@@ -1,2 +1,2 @@
 # BeerBox
-An open source app sample app
+An open source sample app
